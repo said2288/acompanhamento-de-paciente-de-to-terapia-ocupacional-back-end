@@ -17,7 +17,7 @@
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 Um editor para trabalhar com o código como [NetBeans](https://netbeans.apache.org/download/index.html)
-e [POSTMAN](https://www.postman.com/).
+e o [POSTMAN](https://www.postman.com/) para teste de requisição.
 
 
 ### 🎲 Baixando o projeto
@@ -38,6 +38,8 @@ Linguagem usada na construção do projeto:
 ### ⚒️ Ferramentas
 
 - [NetBeans](https://netbeans.apache.org/download/index.html)
+- [POSTMAN](https://www.postman.com/)
+- [SpringBoot](https://spring.io/projects/spring-boot)
 
 Feito por Mohamad Montalbo
 

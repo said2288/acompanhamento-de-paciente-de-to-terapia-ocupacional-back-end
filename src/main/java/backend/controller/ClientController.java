@@ -75,13 +75,18 @@ public class ClientController {
 //        return new ResponseEntity(OutputDTO.transformInDTO(client), HttpStatus.CREATED);
 //    }
     
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @PutMapping("{id}")
-//    public ResponseEntity<InputDTO> editCustomer(@PathVariable("id") long id,
-//                                      @RequestBody InputDTO inputDTO) {
-//        Optional<PersonEntity> client = clientService.editDataPerson(id, inputDTO.transformToClient());
-//        return new ResponseEntity(client, HttpStatus.CREATED);
-//    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("{id}")
+    public ResponseEntity editData(@PathVariable("id") long id,
+                                      @RequestBody PersonEntity personEntity) {
+        Optional<PersonEntity> client = clientService.editData(id, personEntity);
+        if(client.isPresent()) {
+            return new ResponseEntity(client, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        
+    }
 
 }
 

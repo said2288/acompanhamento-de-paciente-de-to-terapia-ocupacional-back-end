@@ -57,14 +57,15 @@ public class ClientService {
         return personRepository.save(personEntity);
     }
     
-    public Optional<PersonEntity> editDataPerson(long id, PersonEntity personEntity) {
+    public Optional<PersonEntity> editData(long id, PersonEntity personEntity) {
         return personRepository.findById(id)
             .map(record -> {
                 record.setNome(personEntity.getNome());
-                record.setEmail(personEntity.getEmail());
-                record.setTelefone(personEntity.getTelefone());
                 record.setCpf(personEntity.getCpf());
                 record.setCnpj(personEntity.getCnpj());
+                record.setEmail(personEntity.getEmail());
+                record.setTelefone(personEntity.getTelefone());
+                record.setAddressEntity(personEntity.getAddressEntity());
 
                 PersonEntity updateClient = personRepository.save(record);
 

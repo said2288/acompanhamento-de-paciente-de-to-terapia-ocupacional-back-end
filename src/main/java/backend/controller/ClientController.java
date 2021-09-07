@@ -1,6 +1,5 @@
 package backend.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 
 import backend.service.ClientService;
 import backend.entity.PersonEntity;
-import backend.dto.InputDTO;
-import backend.dto.OutputDTO;
 
 /**
  *
@@ -36,14 +33,27 @@ public class ClientController {
     
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
-    public List listAllCustomers() {
-        return clientService.listAllCustomers();
+    public ResponseEntity listAllCustomers() {
+        
+        if(clientService.listAllCustomers().isEmpty()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity(clientService.listAllCustomers(), HttpStatus.OK);
+        }
+        
     }
     
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"/{id}"})
-    public Optional<PersonEntity> listCustomer(@PathVariable long id) {
-        return clientService.listCustomer(id);
+    public ResponseEntity  listCustomer(@PathVariable long id) {
+        
+              
+        if(clientService.listCustomer(id).isPresent()) {
+            return new ResponseEntity(clientService.listCustomer(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        
     }
     
     @GetMapping(path = {"cpf/{cpf}"})
@@ -52,15 +62,11 @@ public class ClientController {
         PersonEntity cpfClient = clientService.searchCpf(cpf);
               
             try {
+                if(cpfClient.getCpf() != null) {
+                    return new ResponseEntity<PersonEntity>(cpfClient, HttpStatus.OK);      
+            }             
                 
-            if(cpfClient.getCpf() != null) {
-                
-                return new ResponseEntity<PersonEntity>(cpfClient, HttpStatus.OK);
-                
-            } 
-            
             } catch (NullPointerException e) {
-                
                 System.out.println("Retorno tratado para o cliente");
             }
             
@@ -68,22 +74,25 @@ public class ClientController {
             
     }
     
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @PostMapping
-//    public ResponseEntity<OutputDTO> creationFromCustomer(@RequestBody InputDTO inputDTO) {
-//        PersonEntity client = clientService.creationFromCustomer(inputDTO.transformToClient());
-//        return new ResponseEntity(OutputDTO.transformInDTO(client), HttpStatus.CREATED);
-//    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping
+    public ResponseEntity creationFromCustomer(@RequestBody PersonEntity personEntity) {
+        
+        PersonEntity client = clientService.creationFromCustomer(personEntity);
+        return new ResponseEntity(personEntity, HttpStatus.OK);
+    }
     
     @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping("{id}")
-    public ResponseEntity editData(@PathVariable("id") long id,
+    @PutMapping(path = {"/{id}"})
+    public ResponseEntity editData(@PathVariable long id,
                                       @RequestBody PersonEntity personEntity) {
+        
         Optional<PersonEntity> client = clientService.editData(id, personEntity);
+        
         if(client.isPresent()) {
             return new ResponseEntity(client, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         
     }

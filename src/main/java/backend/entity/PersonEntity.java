@@ -39,6 +39,8 @@ public class PersonEntity {
    private String email;
    private String telefone;
    
+   private boolean ativo = true;
+   
    @OneToOne(cascade = CascadeType.ALL)
    private AddressEntity addressEntity;
 

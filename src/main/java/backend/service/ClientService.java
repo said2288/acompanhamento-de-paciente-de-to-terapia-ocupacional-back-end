@@ -1,5 +1,6 @@
 package backend.service;
 
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +24,24 @@ public class ClientService {
     }
     
     public List listAllCustomers() { 
-        return personRepository.findAll();
+        
+        List<PersonEntity> personActive = personRepository.findAll();
+        
+        return personActive.stream()
+                .filter(pA -> pA.isAtivo())
+                .collect(Collectors.toList());
     }
     
-    public Optional<PersonEntity> listCustomer(long id) { 
-        return personRepository.findById(id);
+    public Optional<PersonEntity> listCustomer(long id) {
+        
+        Optional<PersonEntity> dataCustomer = personRepository.findById(id).filter(l -> l.isAtivo());
+        
+        if(dataCustomer.isPresent()) {
+            return personRepository.findById(id);
+        } else {
+            return Optional.empty();
+        }
+         
     }
     
     public PersonEntity searchCpf(String cpfClient) {
@@ -65,6 +79,7 @@ public class ClientService {
                 record.setCnpj(personEntity.getCnpj());
                 record.setEmail(personEntity.getEmail());
                 record.setTelefone(personEntity.getTelefone());
+                record.setAtivo(personEntity.isAtivo());
                 record.setAddressEntity(personEntity.getAddressEntity());
 
                 PersonEntity updateClient = personRepository.save(record);

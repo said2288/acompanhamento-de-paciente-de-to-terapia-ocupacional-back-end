@@ -34,7 +34,8 @@ public class ClientService {
     
     public Optional<PersonEntity> listCustomer(long id) {
         
-        Optional<PersonEntity> dataCustomer = personRepository.findById(id).filter(l -> l.isAtivo());
+        Optional<PersonEntity> dataCustomer = personRepository.findById(id)
+                .filter(l -> l.isAtivo());
         
         if(dataCustomer.isPresent()) {
             return personRepository.findById(id);

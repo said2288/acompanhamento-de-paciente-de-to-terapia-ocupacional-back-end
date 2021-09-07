@@ -46,8 +46,7 @@ public class ClientController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"/{id}"})
     public ResponseEntity  listCustomer(@PathVariable long id) {
-        
-              
+                      
         if(clientService.listCustomer(id).isPresent()) {
             return new ResponseEntity(clientService.listCustomer(id), HttpStatus.OK);
         } else {

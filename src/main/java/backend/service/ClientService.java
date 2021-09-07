@@ -49,19 +49,13 @@ public class ClientService {
         PersonEntity client = null;
         
             try {
-                
                 client = personRepository.findByCpf(cpfClient);
-            
                 if(client.getCpf() != null) {     
-                    
                     return client;
                 }
-
-                
+       
             } catch (NullPointerException e) {
-                
-                System.out.println("CPF inválido");
-                
+                System.out.println("CPF inválido");     
             }
                 
         return client;

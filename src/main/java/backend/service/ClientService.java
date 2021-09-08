@@ -25,7 +25,7 @@ public class ClientService {
     
     public List listAllCustomers() { 
         
-        List<PersonEntity> personActive = personRepository.findAll();
+        List<PersonEntity> personActive = personRepository.findAllByOrderByNomeAsc();
         
         return personActive.stream()
                 .filter(pA -> pA.isAtivo())

@@ -45,7 +45,7 @@ public class ClientController {
     
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity  listCustomer(@PathVariable long id) {
+    public ResponseEntity listCustomer(@PathVariable long id) {
                       
         if(clientService.listCustomer(id).isPresent()) {
             return new ResponseEntity(clientService.listCustomer(id), HttpStatus.OK);
@@ -56,21 +56,22 @@ public class ClientController {
     }
     
     @GetMapping(path = {"cpf/{cpf}"})
-    public ResponseEntity<PersonEntity> searchCpf(@PathVariable String cpf) {
+    public ResponseEntity searchCpf(@PathVariable String cpf) {
         
         PersonEntity cpfClient = clientService.searchCpf(cpf);
+        PersonEntity CPFvalidated = null;
               
             try {
                 if(cpfClient.getCpf() != null) {
-                    return new ResponseEntity<PersonEntity>(cpfClient, HttpStatus.OK);      
+                    CPFvalidated = cpfClient;    
             }             
                 
             } catch (NullPointerException e) {
-                System.out.println("Retorno tratado para o cliente");
+                  return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             
-        return new ResponseEntity<PersonEntity>(HttpStatus.NOT_FOUND);
-            
+          return new ResponseEntity(CPFvalidated, HttpStatus.OK); 
+                
     }
     
     @CrossOrigin(origins = "http://localhost:4200")

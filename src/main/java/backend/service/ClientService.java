@@ -35,7 +35,7 @@ public class ClientService {
     public Optional<PersonEntity> listCustomer(long id) {
         
         Optional<PersonEntity> dataCustomer = personRepository.findById(id)
-                .filter(l -> l.isAtivo());
+                .filter(dc -> dc.isAtivo());
         
         if(dataCustomer.isPresent()) {
             return personRepository.findById(id);
@@ -51,8 +51,13 @@ public class ClientService {
         
             try {
                 client = personRepository.findByCpf(cpfClient);
-                if(client.getCpf() != null) {     
+                
+                if(client.getCpf() != null &&
+                        client.isAtivo()) {     
                     return client;
+                } else {
+                    client = null;
+                    System.out.println("CPF inválido"); 
                 }
        
             } catch (NullPointerException e) {

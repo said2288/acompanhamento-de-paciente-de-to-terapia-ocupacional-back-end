@@ -16,7 +16,7 @@
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-Um editor para trabalhar com o código como [NetBeans](https://netbeans.apache.org/download/index.html)
+Um editor para trabalhar com o código como [Eclipse IDE](https://www.eclipse.org/downloads/)
 e o [POSTMAN](https://www.postman.com/) para teste de requisição.
 
 
@@ -37,7 +37,7 @@ Linguagem usada na construção do projeto:
 
 ### ⚒️ Ferramentas
 
-- [NetBeans](https://netbeans.apache.org/download/index.html)
+- [Eclipse](https://www.eclipse.org/downloads/)
 - [POSTMAN](https://www.postman.com/)
 - [SpringBoot](https://spring.io/projects/spring-boot)
 

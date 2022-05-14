@@ -3,9 +3,10 @@
 
 <p align="center">O software tem como objetivo fazer operações de CRUD de um produto em BackEnd</p>
 
-<div align="center">
+<div align="center">  
 <img src="https://img.shields.io/badge/-SpringBoot-success"/>
 <img src="https://img.shields.io/badge/-Java-informational"/>
+<img src="https://img.shields.io/badge/-JUnit 5-red"/>
 <img src="https://img.shields.io/badge/License-MIT-blue"/>
 </div>
 

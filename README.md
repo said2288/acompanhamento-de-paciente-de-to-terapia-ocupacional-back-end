@@ -41,6 +41,7 @@ Linguagem usada na construção do projeto:
 - [Eclipse](https://www.eclipse.org/downloads/)
 - [POSTMAN](https://www.postman.com/)
 - [SpringBoot](https://spring.io/projects/spring-boot)
+- [JUnit 5](https://junit.org/junit5/docs/current/user-guide/)
 
 Feito por Mohamad Montalbo
 

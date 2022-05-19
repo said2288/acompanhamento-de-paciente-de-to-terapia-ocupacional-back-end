@@ -6,7 +6,7 @@
 <div align="center">  
 <img src="https://img.shields.io/badge/-SpringBoot-success"/>
 <img src="https://img.shields.io/badge/-Java-informational"/>
-<img src="https://img.shields.io/badge/-JUnit 5-red"/>
+<img src="https://img.shields.io/badge/-JUnit-red"/>
 <img src="https://img.shields.io/badge/License-MIT-blue"/>
 </div>
 
@@ -40,7 +40,7 @@ Linguagem usada na construção do projeto:
 
 - [Eclipse](https://www.eclipse.org/downloads/)
 - [SpringBoot](https://spring.io/projects/spring-boot)
-- [JUnit 5](https://junit.org/junit5/docs/current/user-guide/)
+- [JUnit](https://junit.org/junit5/docs/current/user-guide/)
 - [POSTMAN](https://www.postman.com/)
 
 Feito por Mohamad Montalbo

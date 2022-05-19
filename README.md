@@ -1,7 +1,7 @@
 
 <h1 align="center">Cadastro de Cliente</h1>
 
-<p align="center">O software tem como objetivo fazer operações de CRUD de um produto em BackEnd</p>
+<p align="center">O software tem como objetivo fazer operações de CRUD de um cliente em BackEnd</p>
 
 <div align="center">  
 <img src="https://img.shields.io/badge/-SpringBoot-success"/>

@@ -59,18 +59,18 @@ public class ClientController {
     public ResponseEntity searchCpf(@PathVariable String cpf) {
         
         PersonEntity cpfClient = clientService.searchCpf(cpf);
-        PersonEntity CPFvalidated = null;
+        PersonEntity cpfValidated = null;
               
             try {
                 if(cpfClient.getCpf() != null) {
-                    CPFvalidated = cpfClient;    
+                    cpfValidated = cpfClient;
             }             
                 
             } catch (NullPointerException e) {
                   return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             
-          return new ResponseEntity(CPFvalidated, HttpStatus.OK); 
+          return new ResponseEntity(cpfValidated, HttpStatus.OK);
                 
     }
     

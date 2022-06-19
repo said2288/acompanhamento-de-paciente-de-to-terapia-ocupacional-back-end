@@ -83,9 +83,9 @@ class ClientServiceTest {
 		/* ==================== Verification ==================== */
 		given(personRepository.findByCpf(cpf)).willReturn(personEntity0);
 		
-		PersonEntity personCpfFindOrNot = clientService.searchCpf(cpf);
+		PersonEntity personCpf = clientService.searchCpf(cpf);
 		
-		assertThat(personCpfFindOrNot);
+		assertThat(personCpf.equals(personEntity0));
 	}
 
 	@Test

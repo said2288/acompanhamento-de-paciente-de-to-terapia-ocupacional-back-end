@@ -40,7 +40,10 @@ class ClientControllerTest {
 	// Creating customer
 	PersonEntity person = new PersonEntity(
 			(long) 1, "Mohamad Montalbo", "777777777", null, "said2288@hotmail.com", "983999224", true, null);
-	
+
+	PersonEntity personWithActiveFalse = new PersonEntity(
+			(long) 1, "Mohamad Montalbo", "777777777", null, "said2288@hotmail.com", "983999224", false, null);
+
 	// Customer with Optional
 	Optional<PersonEntity> personEntityOptional = Optional.ofNullable(new PersonEntity(
 			(long) 1, "Montalbo", "999999999", null, "said2288@hotmail.com", "983999224", true, null));
@@ -69,18 +72,6 @@ class ClientControllerTest {
 	    mockMvc.perform(get("/cliente/{id}", id))
 	    	.andExpect(status().isOk())    	
 	    	.andExpect(jsonPath("$", Matchers.hasEntry("email", "said2288@hotmail.com")));
-	}
-
-	@Test
-	void testSearchCpf() throws Exception {
-		
-		// Creating variable for cpf control
-		String cpf = "777777777";
-		/* ==================== Verification ==================== */
-		Mockito.when(clientService.searchCpf(cpf)).thenReturn(person);
-	    mockMvc.perform(get("/cliente/cpf/{cpf}", cpf))
-	    	.andExpect(status().isOk())    	
-	    	.andExpect(jsonPath("$", Matchers.hasEntry("cpf", "777777777")));
 	}
 
 	@Test
@@ -114,6 +105,33 @@ class ClientControllerTest {
 	            .accept(org.springframework.http.MediaType.APPLICATION_JSON))
 	    	.andExpect(status().isOk())    	
 	    	.andExpect(jsonPath("$", Matchers.hasEntry("nome", "Montalbo")));
+	}
+
+	@Test
+	void testDisableClient() throws Exception {
+
+		/* ==================== Verification ==================== */
+		Mockito.when(clientService.disableClient(person)).thenReturn(personWithActiveFalse);
+		String json = mapper.writeValueAsString(person);
+		mockMvc.perform(put("/cliente/desabilitar/cliente")
+				.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+				.characterEncoding("utf-8")
+				.content(json)
+				.accept(org.springframework.http.MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$", Matchers.hasEntry("ativo", false)));
+	}
+
+	@Test
+	void testSearchCpf() throws Exception {
+
+		// Creating variable for cpf control
+		String cpf = "777777777";
+		/* ==================== Verification ==================== */
+		Mockito.when(clientService.searchCpf(cpf)).thenReturn(person);
+		mockMvc.perform(get("/cliente/cpf/{cpf}", cpf))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", Matchers.hasEntry("cpf", "777777777")));
 	}
 
 }

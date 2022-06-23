@@ -73,22 +73,6 @@ class ClientServiceTest {
 	}
 
 	@Test
-	void testSearchCpf() {
-		
-		// Cpf of client created in the Setting the scene
-		// 999999999
-		// Creating variable for cpf control
-		String cpf = "999999999";
-		
-		/* ==================== Verification ==================== */
-		given(personRepository.findByCpf(cpf)).willReturn(personEntity0);
-		
-		PersonEntity personCpf = clientService.searchCpf(cpf);
-		
-		assertThat(personCpf.equals(personEntity0));
-	}
-
-	@Test
 	void testCreationFromCustomer() {
 		
 		/* ==================== Verification ==================== */
@@ -117,6 +101,35 @@ class ClientServiceTest {
 		
 		assertEquals(gettingUpdatedCustomer.get().getNome(), "Montalbo");
 		assertEquals(gettingUpdatedCustomer.get().getEmail(), "montalbo@gmail.com");
+	}
+
+	@Test
+	void testDisableClient() {
+
+		// Creating variable for id control
+		long id = 1;
+
+		// Fields update only in "ativo = false".
+		personEntity0.setAtivo(false);
+
+		/* ==================== Verification ==================== */
+		assertEquals(personEntity0.isAtivo(), false);
+	}
+
+	@Test
+	void testSearchCpf() {
+
+		// Cpf of client created in the Setting the scene
+		// 999999999
+		// Creating variable for cpf control
+		String cpf = "999999999";
+
+		/* ==================== Verification ==================== */
+		given(personRepository.findByCpf(cpf)).willReturn(personEntity0);
+
+		PersonEntity personCpf = clientService.searchCpf(cpf);
+
+		assertThat(personCpf.equals(personEntity0));
 	}
 
 }

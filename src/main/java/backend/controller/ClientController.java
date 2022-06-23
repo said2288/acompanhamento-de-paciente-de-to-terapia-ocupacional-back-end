@@ -55,25 +55,6 @@ public class ClientController {
         
     }
     
-    @GetMapping(path = {"cpf/{cpf}"})
-    public ResponseEntity searchCpf(@PathVariable String cpf) {
-        
-        PersonEntity cpfClient = clientService.searchCpf(cpf);
-        PersonEntity cpfValidated = null;
-              
-            try {
-                if(cpfClient.getCpf() != null) {
-                    cpfValidated = cpfClient;
-            }             
-                
-            } catch (NullPointerException e) {
-                  return new ResponseEntity(HttpStatus.NOT_FOUND);
-            }
-            
-          return new ResponseEntity(cpfValidated, HttpStatus.OK);
-                
-    }
-    
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity creationFromCustomer(@RequestBody PersonEntity personEntity) {
@@ -95,6 +76,40 @@ public class ClientController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(path = {"/desabilitar/cliente"})
+    public ResponseEntity disableClient(@RequestBody PersonEntity personEntity) {
+
+        PersonEntity disableClient = clientService.disableClient(personEntity);
+
+        if(disableClient.isAtivo() == false) {
+            return new ResponseEntity(disableClient, HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_MODIFIED);
+        }
+
+    }
+
+    //This API is used by other systems
+    @GetMapping(path = {"cpf/{cpf}"})
+    public ResponseEntity searchCpf(@PathVariable String cpf) {
+
+        PersonEntity cpfClient = clientService.searchCpf(cpf);
+        PersonEntity cpfValidated = null;
+
+        try {
+            if(cpfClient.getCpf() != null) {
+                cpfValidated = cpfClient;
+            }
+
+        } catch (NullPointerException e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(cpfValidated, HttpStatus.OK);
+
     }
 
 }

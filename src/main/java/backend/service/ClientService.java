@@ -45,28 +45,6 @@ public class ClientService {
          
     }
     
-    public PersonEntity searchCpf(String cpfClient) {
-        
-        PersonEntity client = null;
-        
-            try {
-                client = personRepository.findByCpf(cpfClient);
-                
-                if(client.getCpf() != null &&
-                        client.isAtivo()) {     
-                    return client;
-                } else {
-                    client = null;
-                    System.out.println("CPF inválido"); 
-                }
-       
-            } catch (NullPointerException e) {
-                System.out.println("CPF inválido");     
-            }
-                
-        return client;
-    }
-    
     public PersonEntity creationFromCustomer(PersonEntity personEntity) { 
         return personRepository.save(personEntity);
     }
@@ -86,5 +64,34 @@ public class ClientService {
 
                 return updateClient;
             });
+    }
+
+    public PersonEntity disableClient(PersonEntity personEntity) {
+        personEntity.setAtivo(false);
+        PersonEntity disabledClient = personRepository.save(personEntity);
+
+        return disabledClient;
+    }
+
+    public PersonEntity searchCpf(String cpfClient) {
+
+        PersonEntity client = null;
+
+        try {
+            client = personRepository.findByCpf(cpfClient);
+
+            if(client.getCpf() != null &&
+                    client.isAtivo()) {
+                return client;
+            } else {
+                client = null;
+                System.out.println("CPF inválido");
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println("CPF inválido");
+        }
+
+        return client;
     }
 }

@@ -1,11 +1,13 @@
 
-<h1 align="center">Cadastro de Cliente</h1>
+<h1 align="center">Acompanhamento de paciente de TO - Terapia Ocupacional</h1>
 
-<p align="center">O software tem como objetivo fazer operações de CRUD de um cliente em BackEnd</p>
+<p align="center">Aplicação de cadastro de rotina de paciente, voltado a Terapia Ocupacional</p>
 
 <div align="center">  
 <img src="https://img.shields.io/badge/-SpringBoot-success"/>
 <img src="https://img.shields.io/badge/-Java-informational"/>
+<img src="https://img.shields.io/badge/-Docker-informational"/>
+<img src="https://img.shields.io/badge/-Docker-Compose-informational"/>
 <img src="https://img.shields.io/badge/-JUnit-red"/>
 <img src="https://img.shields.io/badge/License-MIT-blue"/>
 </div>
@@ -16,17 +18,12 @@
 
 ### Pré-requisitos
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-Um editor para trabalhar com o código como [Eclipse IDE](https://www.eclipse.org/downloads/)
-e o [POSTMAN](https://www.postman.com/) para teste de requisição.
+- [SpringBoot](https://spring.io/projects/spring-boot)
+- [Docker](https://docs.docker.com/engine/install/)
+- [Docker-Compose](https://docs.docker.com/compose/install/)
+- [JUnit](https://junit.org/junit5/docs/current/user-guide/)
+- [POSTMAN](https://www.postman.com/)
 
-
-### 🎲 Baixando o projeto
-
-```bash
-# Clone este repositório
-$ git clone https://github.com/said2288/cadastroclientebackend.git
-```
 
 ### 🛠 Tecnologias - Linguagem e Convenção
 
@@ -34,14 +31,13 @@ Linguagem usada na construção do projeto:
 
 - [Java](https://docs.oracle.com/javase/8/docs/)
 - [Convenção Java](https://en.wikibooks.org/wiki/Java_Programming/Coding_conventions)
+### 🎲 Baixando o projeto
 
 
-### ⚒️ Ferramentas
-
-- [Eclipse](https://www.eclipse.org/downloads/)
-- [SpringBoot](https://spring.io/projects/spring-boot)
-- [JUnit](https://junit.org/junit5/docs/current/user-guide/)
-- [POSTMAN](https://www.postman.com/)
+```bash
+# Clone este repositório
+$ git clone https://github.com/said2288/cadastroclientebackend.git
+```
 
 Feito por Mohamad Montalbo
 

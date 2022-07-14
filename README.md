@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/-SpringBoot-success"/>
 <img src="https://img.shields.io/badge/-Java-informational"/>
 <img src="https://img.shields.io/badge/-Docker-informational"/>
-<img src="https://img.shields.io/badge/-Docker-Compose-informational"/>
+<img src="https://img.shields.io/badge/-Docker Compose-informational"/>
 <img src="https://img.shields.io/badge/-JUnit-red"/>
 <img src="https://img.shields.io/badge/License-MIT-blue"/>
 </div>

@@ -93,7 +93,7 @@ public class ClientController {
     }
 
     //This API is used by other systems
-    @GetMapping(path = {"cpf/{cpf}"})
+    @GetMapping(path = {"/cpf/{cpf}"})
     public ResponseEntity searchCpf(@PathVariable String cpf) {
 
         PersonEntity cpfClient = clientService.searchCpf(cpf);
